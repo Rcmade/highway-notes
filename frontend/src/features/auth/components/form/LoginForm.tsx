@@ -17,7 +17,7 @@ import useLoginForm from "../hooks/useLoginForm";
 import AuthFormLayout from "../layout/AuthFormLayout";
 
 export function LoginForm() {
-  const { form, isLoading, onSubmit } = useLoginForm();
+  const { form, isLoading, onSubmit, isOtpSent } = useLoginForm();
 
   return (
     <AuthFormLayout
@@ -47,44 +47,48 @@ export function LoginForm() {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="otp"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <PasswordInputWithToggle
-                    {...field}
-                    id="otp"
-                    label="OTP"
-                    placeholder="OTP"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {isOtpSent && (
+            <FormField
+              control={form.control}
+              name="code"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <PasswordInputWithToggle
+                      {...field}
+                      id="otp"
+                      label="OTP"
+                      placeholder="OTP"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
 
           <Button className="pl-0 text-secondary" variant={"link"}>
             Resend OTP
           </Button>
 
-          <FormField
-            control={form.control}
-            name="otp"
-            render={({ field }) => (
-              <FormItem className="mb-6 flex flex-row items-center gap-2">
-                <FormControl>
-                  <Checkbox
-                    checked={!!field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <FormLabel>Keep me logged in</FormLabel>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {isOtpSent && (
+            <FormField
+              control={form.control}
+              name="rememberMe"
+              render={({ field }) => (
+                <FormItem className="mb-6 flex flex-row items-center gap-2">
+                  <FormControl>
+                    <Checkbox
+                      checked={!!field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <FormLabel>Keep me logged in</FormLabel>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
 
           <Button
             type="submit"

@@ -15,7 +15,7 @@ import useSignUpForm from "../hooks/useSignUpForm";
 import AuthFormLayout from "../layout/AuthFormLayout";
 
 export function SignUpForm() {
-  const { form, isLoading, onSubmit } = useSignUpForm();
+  const { form, isLoading, onSubmit, isOtpSent } = useSignUpForm();
 
   return (
     <AuthFormLayout
@@ -37,6 +37,7 @@ export function SignUpForm() {
                     className="h-12"
                     id="name"
                     label="Your Name"
+                    disabled={isLoading}
                   />
                 </FormControl>
                 <FormMessage />
@@ -58,6 +59,7 @@ export function SignUpForm() {
                       className="h-12 pl-9"
                       id="dob"
                       label="Date of Birth"
+                      disabled={isLoading}
                     />
                   </div>
                 </FormControl>
@@ -79,6 +81,7 @@ export function SignUpForm() {
                     className="h-12"
                     id="email"
                     label="Email"
+                    disabled={isLoading}
                   />
                 </FormControl>
                 <FormMessage />
@@ -86,23 +89,26 @@ export function SignUpForm() {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="otp"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <PasswordInputWithToggle
-                    {...field}
-                    id="otp"
-                    label="OTP"
-                    placeholder="OTP"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {isOtpSent && (
+            <FormField
+              control={form.control}
+              name="code"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <PasswordInputWithToggle
+                      {...field}
+                      id="otp"
+                      label="OTP"
+                      placeholder="OTP"
+                      disabled={isLoading}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
 
           <Button
             type="submit"

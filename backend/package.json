@@ -7,14 +7,12 @@
     "dev": "tsx watch src/index.ts",
     "start": "node ./dist/index.js",
     "lint": "eslint .",
-    "build": "pnpm -w exec tsc -p apps/backend/tsconfig.json && pnpm -w exec tsc-alias -p apps/backend/tsconfig.json",
+    "build": "pnpm -w exec tsc -p backend/tsconfig.json && pnpm -w exec tsc-alias -p backend/tsconfig.json",
     "lint:fix": "npm run lint --fix",
     "db:push": "pnpm dlx prisma db push",
     "db:generate": "pnpm dlx prisma generate",
-    "db:pull": "pnpm dlx prisma db pull",
     "db:studio": "pnpm dlx prisma studio",
-    "db-update": "npm run db:generate && npm run db:push",
-    "db:seed": "tsx scripts/seed.ts"
+    "db-update": "npm run db:generate && npm run db:push"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +24,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
     "@types/multer": "^2.0.0",
+    "@types/nodemailer": "^7.0.1",
     "@types/passport": "^1.0.17",
     "@types/passport-google-oauth20": "^2.0.16",
     "@types/passport-local": "^1.0.38",
@@ -49,11 +48,11 @@
     "morgan": "^1.10.1",
     "multer": "^2.0.2",
     "node-fetch": "^3.3.2",
+    "nodemailer": "^7.0.6",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
-    "pg": "^8.16.3",
-    "stripe": "^18.4.0"
+    "zod": "^4.1.5"
   }
 }

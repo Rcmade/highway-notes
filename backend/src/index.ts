@@ -11,6 +11,8 @@ import passport from "passport";
 
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as LocalStrategy } from "passport-local";
+import { errorHandler } from "./middlewares/errorHandler";
+import authRoutes from "./routes/authRoutes";
 
 dotenv.config();
 
@@ -27,7 +29,7 @@ app.use(
     credentials: true,
     origin: [
       "http://localhost:3000",
-      "http://localhost:3001",
+      "http://localhost:5173",
       "https://hightway-notes.rcmade.me",
     ],
   })
@@ -36,6 +38,8 @@ app.use(cookieParser());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use("/api/auth", authRoutes);
 
 const JWT_SECRET = process.env.JWT_SECRET || "supersecret";
 
@@ -145,6 +149,10 @@ app.get("/api/notes", (req, res) => {
     res.status(401).json({ error: "Invalid token" });
   }
 });
+
+
+app.use(errorHandler);
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

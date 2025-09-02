@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "sonner";
 import App from "./App.js";
 import AuthLayout from "./features/auth/components/form/AuthLayout.js";
 import "./index.css";
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/auth/google/success" element={<GoogleSuccess />} />
         </Routes>
       </BrowserRouter>
+      <Toaster position="top-center" />
     </QueryClientProvider>
   </StrictMode>,
 );
