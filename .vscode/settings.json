@@ -15,13 +15,7 @@
       "mode": "auto"
     }
   ],
-  "tailwindCSS.experimental.configFile": "packages/ui/src/styles/globals.css",
-  "cSpell.words": [
-    "Garud",
-    "LSID",
-    "rayauth",
-    "vari"
-  ],
+  "cSpell.words": ["Garud", "LSID", "rayauth", "vari"],
   // Disable the default formatter, use eslint instead
   // "prettier.enable": false,
   // "editor.formatOnSave": false,
