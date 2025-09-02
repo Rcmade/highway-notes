@@ -1,7 +1,9 @@
 import { api, getReadableErrorMessage } from "@/lib/api";
 import type { SignUpResponseT, SignUpVerifyResponseT } from "@/types/apiType";
 import {
+  signupSchema,
   signupVerifySchema,
+  type SignupSchemaT,
   type SignupVerifySchemaT,
 } from "@/zodSchema/authSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,15 +18,8 @@ const useSignUpForm = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const form = useForm<SignupVerifySchemaT>({
-    resolver: zodResolver(
-      signupVerifySchema.pick({
-        code: isOtpSent as unknown as true,
-        dob: true,
-        email: true,
-        name: true,
-      }),
-    ),
+  const form = useForm<SignupSchemaT | SignupVerifySchemaT>({
+    resolver: zodResolver(isOtpSent ? signupVerifySchema : signupSchema),
     defaultValues: {
       name: "",
       dob: "",
