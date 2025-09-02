@@ -63,11 +63,11 @@ const useSignUpForm = () => {
       toast.error(getReadableErrorMessage(error));
     },
   });
-  const onSubmit = async (values: SignupVerifySchemaT) => {
+  const onSubmit = async (values: SignupSchemaT | SignupVerifySchemaT) => {
     if (isOtpSent) {
-      verifyOtpMutate(values);
+      verifyOtpMutate(values as SignupVerifySchemaT);
     } else {
-      mutate(values);
+      mutate(values as SignupSchemaT);
     }
   };
 

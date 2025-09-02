@@ -11,7 +11,7 @@ const authObj = {
 
 export const signupSchema = z.object({
   ...authObj,
-  code: string().optional(),
+  code: string(),
 });
 export type SignupSchemaT = z.infer<typeof signupSchema>;
 
