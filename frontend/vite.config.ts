@@ -16,5 +16,6 @@ export default defineConfig({
     port: 3300,
     strictPort: true,
     host: true,
+    allowedHosts: ['hd.rcmade.me")'],
   },
 });
