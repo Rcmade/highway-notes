@@ -10,8 +10,7 @@ export const googleCallback = (req: Request, res: Response) => {
       `${process.env.FRONTEND_URL}/auth/login?error=google_failed`
     );
   }
-
-  const token = signJwt({ sub: user.id, email: user.email, name: user.name });
+  const token = signJwt(user);
 
   res.cookie("token", token, {
     httpOnly: true,
