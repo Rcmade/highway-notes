@@ -5,6 +5,8 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 
+import passport from "passport";
+import { setupPassport } from "./lib/passport/passport";
 import { errorHandler } from "./middlewares/errorHandler";
 import authRoutes from "./routes/authRoutes";
 import noteRoutes from "./routes/notesRoutes";
@@ -42,6 +44,8 @@ app.use(
 app.use(cookieParser());
 
 app.use(express.json());
+app.use(passport.initialize());
+setupPassport();
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/auth", authRoutes);

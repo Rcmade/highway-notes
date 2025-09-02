@@ -32,14 +32,15 @@ function DashboardPage() {
               src="/images/logo.png"
               className="mr-3 size-12 object-contain"
             />
-            <h1 className="text-xl font-bold text-black">Dashboard</h1>
+            <h1 className="text-xl font-bold">Dashboard</h1>
           </div>
-          <button
+          <Button
             onClick={() => mutate()}
-            className="text-base font-medium text-primary"
+            className="text-base font-medium"
+            variant="link"
           >
             Sign Out
-          </button>
+          </Button>
         </div>
 
         {/* Welcome */}

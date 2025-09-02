@@ -13,7 +13,7 @@ import {
   generateAndSendOtp,
   issueJwtForUser,
   verifyOtpAndConsume,
-} from "../services/authService";
+} from "../../services/authService";
 
 export async function signupRequest(
   req: Request,
@@ -72,7 +72,7 @@ export async function signupVerify(
         id: user.id,
         email: user.email,
         name: user.name,
-        dob: user.dob.toISOString(),
+        dob: user.dob ? user.dob.toISOString() : undefined,
         provider: user.provider,
         createdAt: user.createdAt.toISOString(),
         updatedAt: user.updatedAt.toISOString(),
@@ -142,7 +142,7 @@ export async function loginVerify(
         id: user.id,
         email: user.email,
         name: user.name,
-        dob: user.dob.toISOString(),
+        dob: user.dob ? user.dob.toISOString() : undefined,
         provider: user.provider,
         createdAt: user.createdAt.toISOString(),
         updatedAt: user.updatedAt.toISOString(),
@@ -175,9 +175,6 @@ export async function getMe(req: Request, res: Response) {
 
   return res.json(user);
 }
-
-
-
 
 export const logout = async (req: Request, res: Response) => {
   try {

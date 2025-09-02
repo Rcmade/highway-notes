@@ -1,3 +1,4 @@
+import SocialLoginButton from "@/components/button/SocialLoginButton";
 import type { Children } from "@/types";
 import { Link } from "react-router-dom";
 
@@ -39,6 +40,9 @@ const AuthFormLayout = ({
       </div>
 
       {children}
+
+      <SocialLoginButton />
+
       <p className="mt-4 text-center text-lg text-muted-foreground">
         {variants[navigateVariant].description}
         <Link
