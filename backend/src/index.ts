@@ -13,8 +13,18 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as LocalStrategy } from "passport-local";
 import { errorHandler } from "./middlewares/errorHandler";
 import authRoutes from "./routes/authRoutes";
+import noteRoutes from "./routes/notesRoutes";
 
 dotenv.config();
+
+declare global {
+  namespace Express {
+    interface User {
+      id: string;
+      email: string;
+    }
+  }
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -40,6 +50,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/auth", authRoutes);
+app.use("/api/notes", noteRoutes);
 
 const JWT_SECRET = process.env.JWT_SECRET || "supersecret";
 

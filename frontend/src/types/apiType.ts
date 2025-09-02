@@ -17,7 +17,6 @@ export type SignUpVerifyResponseT = {
 export type LoginResponseT = SignUpResponseT;
 export type LoginVerifyResponseT = SignUpVerifyResponseT;
 
-
 export type UserT = {
   id: string;
   email: string;
@@ -25,4 +24,13 @@ export type UserT = {
   dob: string;
   createdAt: string;
   updatedAt: string;
-}
+};
+
+export type Note = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  title: string;
+  content: string | null;
+  userId: string;
+};

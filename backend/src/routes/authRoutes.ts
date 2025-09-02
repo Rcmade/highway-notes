@@ -2,6 +2,7 @@ import {
   getMe,
   loginRequest,
   loginVerify,
+  logout,
   signupRequest,
   signupVerify,
 } from "@/controllers/authController";
@@ -26,5 +27,6 @@ authRoutes.post("/login/request", validate(loginSchema), loginRequest);
 authRoutes.post("/login/verify", validate(loginVerifySchema), loginVerify);
 
 authRoutes.get("/me", requireAuth, getMe);
+authRoutes.post("/logout", logout);
 
 export default authRoutes;

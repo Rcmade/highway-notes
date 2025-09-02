@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/form";
 import { PasswordInputWithToggle } from "@/components/ui/password-input";
 
+import { toast } from "sonner";
 import useLoginForm from "../hooks/useLoginForm";
 import AuthFormLayout from "../layout/AuthFormLayout";
 
@@ -67,7 +68,14 @@ export function LoginForm() {
             />
           )}
 
-          <Button className="pl-0 text-secondary" variant={"link"}>
+          <Button
+            type="button"
+            onClick={() => {
+              toast.error("TODO: Resend OTP");
+            }}
+            className="pl-0 text-secondary"
+            variant={"link"}
+          >
             Resend OTP
           </Button>
 

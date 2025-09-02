@@ -29,7 +29,7 @@ const AuthFormLayout = ({
   };
   return (
     <div className="w-full max-w-lg">
-      <div className="mb-8">
+      <div className="mb-8 text-center">
         <h1 className="text-3xl font-semibold text-balance text-foreground sm:text-4xl">
           {title}
         </h1>

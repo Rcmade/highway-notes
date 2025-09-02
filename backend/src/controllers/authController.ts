@@ -175,3 +175,22 @@ export async function getMe(req: Request, res: Response) {
 
   return res.json(user);
 }
+
+
+
+
+export const logout = async (req: Request, res: Response) => {
+  try {
+    // Clear the auth cookie
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+    });
+
+    return res.status(200).json({ message: "Logged out successfully" });
+  } catch (err) {
+    console.error("Logout error:", err);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
